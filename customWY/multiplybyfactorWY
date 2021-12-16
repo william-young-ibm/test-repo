@@ -17,9 +17,9 @@ logger = logging.getLogger(__name__)
 # Replace XXXXXX with your personal access token.
 # After @ you must specify a branch.
 
-PACKAGE_URL = 'git+https://XXXXXX@github.com/<user_id><path_to_repository>@starter_package'
+PACKAGE_URL = 'git+https://git@github.com:william-young-ibm/test-repo.git'
 
-class MultiplyByFactor<YourInitials>(BaseTransformer):
+class MultiplyByFactorWY(BaseTransformer):
 
     def __init__(self, input_items, factor, output_items):
 
