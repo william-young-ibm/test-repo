@@ -23,7 +23,7 @@ PACKAGE_URL = 'git+https://git@github.com:william-young-ibm/test-repo.git'
 
 class EmailWY(BaseTransformer):
 
-    def __init__(self, toEmail, subject, body, server, port, usingSSL, authentication, username, password):
+    def __init__(self, toEmail, subject, body, server, port, usingSSL, authentication, username, password, input_items, output_items):
         self.toEmail = toEmail
         self.subject = subject
         self.body = body
@@ -33,9 +33,12 @@ class EmailWY(BaseTransformer):
         self.authentication = bool(authentication)
         self.username = username
         self.password = password
+        self.input_items = input_items
+        self.output_items = output_items
         super().__init__()
 
     def execute(self, df):
+        df = df.copy();
         formatted_message = f"Subject: { self.subject }\n\n{ self.body }"
         if self.usingSSL:
             context = ssl.create_default_context()
@@ -48,6 +51,9 @@ class EmailWY(BaseTransformer):
                 if self.authentication:
                     server.login(self.username, self.password)
                 server.sendmail(self.username, self.toEmail, formatted_message)
+        for i,input_item in enumerate(self.input_items):
+            df[self.output_items[i]] = df[input_item]
+        return df
 
 
 
@@ -107,9 +113,12 @@ class EmailWY(BaseTransformer):
             datatype = str,
             description = "Password for SMTP authentication"
         ))
-        outputs = []
-        outputs.append(ui.UIFunctionOutSingle(
-            name = 'dummyout',
-            datatype = str,
+        inputs.append(ui.UIMultiItem(
+            name = 'input_items',
+            datatype=float,
+            description = "Data items adjust",
+            output_item = 'output_items',
+            is_output_datatype_derived = True
         ))
+        outputs = []
         return (inputs,outputs)
