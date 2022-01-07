@@ -35,4 +35,5 @@ print("setup db");
 print("registering");
 db.unregister_functions("MultiplyByFactorWY")
 db.unregister_functions("EmailWY")
+db.unregister_functions("WorkOrdersWY")
 print("registered");

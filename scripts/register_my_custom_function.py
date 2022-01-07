@@ -34,6 +34,7 @@ db = Database(credentials=credentials, echo=True)
 print("setup db");
 from customWY.multiplybyfactorWY import MultiplyByFactorWY
 from customWY.emailWY import EmailWY
+from customWY.maximo_workorderWY import WorkOrdersWY
 print("registering");
-db.register_functions([MultiplyByFactorWY, EmailWY])
+db.register_functions([MultiplyByFactorWY, EmailWY, WorkOrdersWY])
 print("registered");

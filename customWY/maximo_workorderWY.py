@@ -51,6 +51,7 @@ class WorkOrdersWY(BaseTransformer):
             description = "Data items adjust",
             output_item = 'output_items',
             is_output_datatype_derived = True
+        ))
         inputs.append(UISingle(
             name="url",
             datatype=str,
