@@ -13,6 +13,8 @@ from iotfunctions import ui
 
 logger = logging.getLogger(__name__)
 
+PACKAGE_URL = 'git+https://git@github.com:william-young-ibm/test-repo.git'
+
 class HistorianQueryWY(BaseTransformer):
     is_scope_enabled = True
 

@@ -38,5 +38,5 @@ from customWY.Maximo_Create_Work_Order_WY import MaximoCreateWorkOrderWY
 from customWY.Maximo_Query_Last_PM_WY import MaximoQueryLastPMWY
 from customWY.Maximo_Query_Work_Order_WY import MaximoQueryWorkOrderWY
 print("registering");
-db.register_functions([MultiplyByFactorWY, EmailWY, WorkOrdersWY])
+db.register_functions([EmailNotificationWY, HistorianQueryWY, MaximoCreateWorkOrderWY, MaximoQueryLastPMWY, MaximoQueryWorkOrderWY])
 print("registered");
