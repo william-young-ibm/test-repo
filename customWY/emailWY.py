@@ -108,4 +108,8 @@ class EmailWY(BaseTransformer):
             description = "Password for SMTP authentication"
         ))
         outputs = []
+        outputs.append(ui.UIFunctionOutSingle(
+            name = 'dummyout',
+            datatype = 'str',
+        ))
         return (inputs,outputs)
