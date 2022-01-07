@@ -52,13 +52,13 @@ class WorkOrdersWY(BaseTransformer):
             output_item = 'output_items',
             is_output_datatype_derived = True
         ))
-        inputs.append(UISingle(
+        inputs.append(ui.UISingle(
             name="url",
             datatype=str,
             description="What endpoint would you like to call?",
             required=True
         ))
-        inputs.append(UISingle(
+        inputs.append(ui.UISingle(
             name="api_key",
             datatype=str,
             description="What is your api_key?",
