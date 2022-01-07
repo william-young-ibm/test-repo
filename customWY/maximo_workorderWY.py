@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 
 
 
-PACKAGE_URL = 'git+https://github.com/william-young-ibm/test-repo.git'
+PACKAGE_URL = 'git+https://github.com/william-young-ibm/test-repo.git@master'
 
 
 class WorkOrdersWY(BaseTransformer):
@@ -37,7 +37,7 @@ class WorkOrdersWY(BaseTransformer):
         headers = {'apikey': f'{self.api_key}'}
         response = requests.request("GET", self.url, headers=headers, data=payload)
         for i,input_item in enumerate(self.input_items):
-            df[self.output_items[i]] = response.text
+            df[self.output_items[i]] = str(response.text)
         return df
 
 
@@ -47,7 +47,7 @@ class WorkOrdersWY(BaseTransformer):
         inputs = []
         inputs.append(ui.UIMultiItem(
             name = 'input_items',
-            datatype=float,
+            datatype=str,
             description = "Data items adjust",
             output_item = 'output_items',
             is_output_datatype_derived = True
