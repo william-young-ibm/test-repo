@@ -110,6 +110,6 @@ class EmailWY(BaseTransformer):
         outputs = []
         outputs.append(ui.UIFunctionOutSingle(
             name = 'dummyout',
-            datatype = 'str',
+            datatype = str,
         ))
         return (inputs,outputs)
