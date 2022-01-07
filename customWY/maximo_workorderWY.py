@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 
 
 
-PACKAGE_URL = 'git+https://github.com/william-young-ibm/test-repo.git@master'
+PACKAGE_URL = 'git+https://github.com/william-young-ibm/test-repo.git@main'
 
 
 class WorkOrdersWY(BaseTransformer):
