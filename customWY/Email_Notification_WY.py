@@ -21,7 +21,8 @@ logger = logging.getLogger(__name__)
 
 PACKAGE_URL = 'git+https://github.com/william-young-ibm/test-repo.git@main'
 
-class EmailWY(BaseTransformer):
+class EmailNotificationWY(BaseTransformer):
+    is_scope_enabled = True
 
     def __init__(self, toEmail, subject, body, server, port, usingSSL, authentication, username, password, input_items, output_items):
         self.toEmail = toEmail

@@ -32,9 +32,11 @@ db_schema = None
 print(credentials);
 db = Database(credentials=credentials, echo=True)
 print("setup db");
-from customWY.multiplybyfactorWY import MultiplyByFactorWY
-from customWY.emailWY import EmailWY
-from customWY.maximo_workorderWY import WorkOrdersWY
+from customWY.Email_Notification_WY import EmailNotificationWY
+from customWY.Historian_Query_WY import HistorianQueryWY
+from customWY.Maximo_Create_Work_Order_WY import MaximoCreateWorkOrderWY
+from customWY.Maximo_Query_Last_PM_WY import MaximoQueryLastPMWY
+from customWY.Maximo_Query_Work_Order_WY import MaximoQueryWorkOrderWY
 print("registering");
 db.register_functions([MultiplyByFactorWY, EmailWY, WorkOrdersWY])
 print("registered");

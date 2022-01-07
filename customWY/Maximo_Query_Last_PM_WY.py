@@ -11,17 +11,10 @@ import pandas as pd
 from iotfunctions.base import BaseTransformer
 from iotfunctions import ui
 
-
-
 logger = logging.getLogger(__name__)
 
-
-
-
-PACKAGE_URL = 'git+https://github.com/william-young-ibm/test-repo.git@main'
-
-
-class WorkOrdersWY(BaseTransformer):
+class MaximoQueryLastPMWY(BaseTransformer):
+    is_scope_enabled = True
 
     def __init__(self, input_items, output_items, url, api_key):
 
@@ -40,37 +33,32 @@ class WorkOrdersWY(BaseTransformer):
             df[self.output_items[i]] = str(response.text)
         return df
 
-
     @classmethod
     def build_ui(cls):
         # define arguments that behave as function inputs
         inputs = []
-        inputs.append(ui.UIMultiItem(
-            name = 'input_items',
-            datatype=str,
-            description = "Data items adjust",
-            output_item = 'output_items',
-            is_output_datatype_derived = True
+        inputs.append(ui.UISingle(
+            name = 'asset_id',
+            datatype = str,
+            description = "Asset ID to query last PM for.",
+            required = True
         ))
         inputs.append(ui.UISingle(
-            name="url",
-            datatype=str,
-            description="What endpoint would you like to call?",
-            required=True
-        ))
-        inputs.append(ui.UISingle(
-            name="api_key",
-            datatype=str,
-            description="What is your api_key?",
-            required=True
+            name = "api_key",
+            datatype = str,
+            description = "Maximo API key",
+            required = True
         ))
 
         outputs = []
+        outputs.append(ui.UIFunctionOutSingle(
+            name = 'maximo_pm_found',
+            datatype = bool,
+            description = "False if no PM could be found for the given asset ID"
+        ))
+        outputs.append(ui.UIFunctionOutSingle(
+            name = 'last_pm_datetime',
+            datatype = dt.datetime
+        ))
 
         return (inputs, outputs)
-
-
-
-
-
-
