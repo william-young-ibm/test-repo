@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 # Replace XXXXXX with your personal access token.
 # After @ you must specify a branch.
 
-PACKAGE_URL = 'git+https://git@github.com:william-young-ibm/test-repo.git'
+PACKAGE_URL = 'git+https://github.com/william-young-ibm/test-repo.git'
 
 class EmailWY(BaseTransformer):
 
@@ -106,11 +106,13 @@ class EmailWY(BaseTransformer):
         inputs.append(ui.UISingle(
             name = 'username',
             datatype = str,
+            required = False,
             description = "Username for SMTP authentication"
         ))
         inputs.append(ui.UISingle(
             name = 'password',
             datatype = str,
+            required = False,
             description = "Password for SMTP authentication"
         ))
         inputs.append(ui.UIMultiItem(
