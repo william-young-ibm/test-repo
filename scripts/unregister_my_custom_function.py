@@ -32,8 +32,7 @@ db_schema = None
 print(credentials);
 db = Database(credentials=credentials, echo=True)
 print("setup db");
-from customWY.multiplybyfactorWY import MultiplyByFactorWY
-from customWY.emailWY import EmailWY
 print("registering");
-db.register_functions([MultiplyByFactorWY, EmailWY])
+db.unregister_functions("MultiplyByFactorWY")
+db.unregister_functions("EmailWY")
 print("registered");
