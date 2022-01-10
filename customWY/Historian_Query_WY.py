@@ -41,7 +41,7 @@ class HistorianQueryWY(BaseTransformer):
         inputs = []
         inputs.append(ui.UISingle(
             name = 'last_work_order_date',
-            datetype = dt.datetime,
+            datetype = str, #dt.datetime,
             description = "Datetime of the last submitted work order",
             required = True
         ))
