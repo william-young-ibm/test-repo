@@ -60,7 +60,7 @@ class MaximoQueryLastPMWY(BaseTransformer):
         ))
         outputs.append(ui.UIFunctionOutSingle(
             name = 'last_pm_datetime',
-            datatype = str #dt.datetime
+            datatype = dt.datetime
         ))
 
         return (inputs, outputs)
