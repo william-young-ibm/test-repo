@@ -18,11 +18,10 @@ PACKAGE_URL = 'git+https://git@github.com:william-young-ibm/test-repo.git'
 class MaximoQueryLastPMWY(BaseTransformer):
     is_scope_enabled = True
 
-    def __init__(self, input_items, output_items, url, api_key):
-
-        self.input_items = input_items
-        self.output_items = output_items
-        self.url = url
+    def __init__(self, asset_id, earliest_date, url, api_key):
+        self.url = "https://gemas86.manage.gemas86.gtm-pat.com/maximo/api/os/REP_WORKORDER?lean=1&oslc.select=actfinish,statusdate&oslc.pageSize=1&oslc.where=assetnum=\"GN171050\"&oslc.where=worktype=\"PM\""
+        self.asset_id = asset_id
+        self.earliest_date = earliest_date
         self.api_key = api_key
         super().__init__()
 
@@ -44,6 +43,12 @@ class MaximoQueryLastPMWY(BaseTransformer):
             datatype = str,
             description = "Asset ID to query last PM for.",
             required = True
+        ))
+        inputs.append(ui.UISingle(
+            name = 'earliest_date',
+            datatype = dt.datetime,
+            description = "earliest date to search to",
+            required=True
         ))
         inputs.append(ui.UISingle(
             name = "api_key",

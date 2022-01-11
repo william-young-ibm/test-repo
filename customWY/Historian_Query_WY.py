@@ -46,9 +46,9 @@ class HistorianQueryWY(BaseTransformer):
             required = True
         ))
         inputs.append(ui.UISingle(
-            name = 'STATENUM',
+            name = 'historian_tagname',
             datatype = str,
-            description = "STATENUM tag value",
+            description = "Historian Tagname to query",
             required = True
         ))
         inputs.append(ui.UISingle(

@@ -18,11 +18,9 @@ PACKAGE_URL = 'git+https://git@github.com:william-young-ibm/test-repo.git'
 class MaximoCreateWorkOrderWY(BaseTransformer):
     is_scope_enabled = True
 
-    def __init__(self, input_items, output_items, url, api_key):
-
-        self.input_items = input_items
-        self.output_items = output_items
-        self.url = url
+    def __init__(self, asset_id, api_key):
+        self.url = "https://gemas86.manage.gemas86.gtm-pat.com/maximo/api/os/mxapiwo?action=SAVETHISQUERY"
+        self.asset_id = asset_id
         self.api_key = api_key
         super().__init__()
 

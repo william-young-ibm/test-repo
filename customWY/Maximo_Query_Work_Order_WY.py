@@ -18,11 +18,10 @@ PACKAGE_URL = 'git+https://git@github.com:william-young-ibm/test-repo.git'
 class MaximoQueryWorkOrderWY(BaseTransformer):
     is_scope_enabled = True
 
-    def __init__(self, input_items, output_items, url, api_key):
-
-        self.input_items = input_items
-        self.output_items = output_items
-        self.url = url
+    def __init__(self, asset_id, work_order_type, earliest_date, api_key):
+        self.url = "https://gemas86.manage.gemas86.gtm-pat.com/maximo/api/os/REP_WORKORDER?lean=1&oslc.select=wonum&oslc.pageSize=1&oslc.where=assetnum=\"GN171050\"&oslc.where=worktype=\"PM\""
+        self.work_order_type = work_order_type
+        self.earliest_date = earliest_date
         self.api_key = api_key
         super().__init__()
 
@@ -46,6 +45,18 @@ class MaximoQueryWorkOrderWY(BaseTransformer):
             required = True
         ))
         inputs.append(ui.UISingle(
+            name = 'work_order_type',
+            datatype = str,
+            description = "Work order type to query for",
+            required=True
+        ))
+        inputs.append(ui.UISingle(
+            name = 'earliest_date',
+            datatype = dt.datetime,
+            description = "earliest date to search to",
+            required=True
+        ))
+        inputs.append(ui.UISingle(
             name = "api_key",
             datatype = str,
             description = "Maximo API key",
@@ -54,8 +65,8 @@ class MaximoQueryWorkOrderWY(BaseTransformer):
 
         outputs = []
         outputs.append(ui.UIFunctionOutSingle(
-            name = 'maximo_work_order_exists',
-            datatype = bool
+            name = 'pm_workorder',
+            datatype = str
         ))
 
         return (inputs, outputs)
